@@ -1,7 +1,10 @@
 all: minimal
 
-arch-rpi2:
+arch-rpi2: ArchLinuxARM-rpi-2-latest.tar.gz
 	docker build -t superbfg7/arch-rpi2 .
+
+ArchLinuxARM-rpi-2-latest.tar.gz:
+	wget http://archlinuxarm.org/os/ArchLinuxARM-rpi-2-latest.tar.gz
 
 export: arch-rpi2
 	docker create --name=arch-rpi2-base superbfg7/arch-rpi2

@@ -3,9 +3,11 @@ FROM superbfg7/arch-rpi2-minimal
 ARG UID
 ARG GID
 
-COPY python2-yenc.tar.xz sabnzbd.tar.xz /tmp/
+COPY python2-yenc-0.4.0-3-armv7h.pkg.tar.xz sabnzbd-0.7.20-2-any.pkg.tar.xz /tmp/
 RUN pacman -S --noconfirm python2-pyopenssl && \
-	pacman --noconfirm -U /tmp/*.tar.xz && rm /tmp/*tar.xz
+	pacman -U --noconfirm /tmp/*pkg.tar.xz && \
+	rm /tmp/*pkg.tar.xz && \
+	localepurge
 
 USER $UID
 

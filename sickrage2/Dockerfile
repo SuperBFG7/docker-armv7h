@@ -5,9 +5,8 @@ ARG GID
 
 RUN pacman -S --noconfirm git python2-mako python2-cheetah && \
 		git clone https://github.com/SickRage/SickRage.git /app/sickrage && \
-		localepurge && \
+		pacman -R --noconfirm git && \
 		chown -R $UID:$GID /app
-#		pacman -R --noconfirm git && \
 
 USER $UID
 

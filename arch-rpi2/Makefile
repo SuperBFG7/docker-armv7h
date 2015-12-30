@@ -16,3 +16,4 @@ minimal: export
 
 clean:
 	docker rm arch-rpi2-base
+	rm -f arch-rpi2-minimal.tar.gz

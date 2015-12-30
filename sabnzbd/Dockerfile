@@ -2,12 +2,12 @@ FROM superbfg7/arch-rpi2-minimal
 
 ARG UID
 ARG GID
+ARG SERVER
 
-COPY python2-yenc-0.4.0-3-armv7h.pkg.tar.xz sabnzbd-0.7.20-2-any.pkg.tar.xz /tmp/
-RUN pacman -S --noconfirm python2-pyopenssl && \
-	pacman -U --noconfirm /tmp/*pkg.tar.xz && \
-	rm /tmp/*pkg.tar.xz && \
-	localepurge
+RUN echo -e "[custom]\n\
+Server = http://$SERVER" >> /etc/pacman.conf && \
+	pacman -Sy --noconfirm && \
+	pacman -S --noconfirm python2-pyopenssl sabnzbd
 
 USER $UID
 

@@ -9,5 +9,4 @@ sabnzbd: darkhttpd.pid
 	rm -f darkhttpd.pid
 
 darkhttpd.pid:
-	darkhttpd /data/packages/ & echo "$$!" > darkhttpd.pid
-
+	darkhttpd /packages/ & echo "$$!" > darkhttpd.pid

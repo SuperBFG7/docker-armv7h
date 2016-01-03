@@ -1,7 +1,8 @@
 FROM scratch
 
-ADD ArchLinuxARM-rpi-2-latest.tar.gz /
 #ADD http://archlinuxarm.org/os/ArchLinuxARM-rpi-2-latest.tar.gz /
+ADD ArchLinuxARM-rpi-2-latest.tar.gz /
+COPY mirrorlist /etc/pacman.d/mirrorlist
 RUN pacman -R --noconfirm \
 		raspberrypi-firmware raspberrypi-firmware-bootloader \
 		raspberrypi-firmware-bootloader-x raspberrypi-firmware-examples \

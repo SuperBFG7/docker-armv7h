@@ -11,5 +11,5 @@ arch-rpi2-minimal.tar.gz: ArchLinuxARM-rpi-2-latest.tar.gz
 	gzip arch-rpi2-minimal.tar
 
 clean:
-	docker rm arch-rpi2-base
 	rm -f arch-rpi2-minimal.tar.gz
+	docker rm arch-rpi2-base

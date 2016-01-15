@@ -5,6 +5,7 @@ ARG GID
 
 RUN pacman -S --noconfirm git python2-mako python2-cheetah && \
 		git clone https://github.com/SickRage/SickRage.git /app/sickrage && \
+		rm -rf /app/sickrage/.git/ && \
 		pacman -R --noconfirm git && \
 		chown -R $UID:$GID /app
 

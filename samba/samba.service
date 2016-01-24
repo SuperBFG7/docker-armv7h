@@ -1,0 +1,12 @@
+[Unit]
+Description=samba container
+Requires=docker.service
+After=docker.service
+
+[Service]
+Restart=always
+ExecStart=/usr/bin/docker start -a samba
+ExecStop=/usr/bin/docker stop samba
+
+[Install]
+WantedBy=default.target

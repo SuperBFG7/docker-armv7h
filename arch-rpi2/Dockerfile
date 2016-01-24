@@ -26,4 +26,4 @@ ADD locale.nopurge /etc/locale.nopurge
 RUN localepurge && \
 	rm -rf /usr/share/doc/ /usr/share/gtk-doc/ /usr/share/info /usr/share/man 
 
-CMD ["/bin/bash"]
+CMD ["/usr/bin/pacman","--noconfirm","-Syu"]

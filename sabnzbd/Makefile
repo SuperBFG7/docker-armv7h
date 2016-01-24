@@ -5,6 +5,8 @@ sabnzbd: darkhttpd.pid
 		--build-arg "UID=`id -u sickrage`" \
 		--build-arg "GID=`id -g sickrage`" \
 		--build-arg "SERVER=`hostname -i | cut -f 1 -d ' '`" .
+	docker tag -f superbfg7/sabnzbd \
+		superbfg7/sabnzbd:`/usr/bin/pacman -Sp --print-format %v sabnzbd`
 	cat darkhttpd.pid | xargs kill
 	rm -f darkhttpd.pid
 

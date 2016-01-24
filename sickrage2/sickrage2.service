@@ -1,0 +1,12 @@
+[Unit]
+Description=sickrage2 container
+Requires=docker.service
+After=docker.service
+
+[Service]
+Restart=always
+ExecStart=/usr/bin/docker start -a sickrage2
+ExecStop=/usr/bin/docker stop sickrage2
+
+[Install]
+WantedBy=default.target

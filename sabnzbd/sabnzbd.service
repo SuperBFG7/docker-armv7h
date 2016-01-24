@@ -1,0 +1,12 @@
+[Unit]
+Description=sabnzbd container
+Requires=docker.service
+After=docker.service
+
+[Service]
+Restart=always
+ExecStart=/usr/bin/docker start -a sabnzbd
+ExecStop=/usr/bin/docker stop sabnzbd
+
+[Install]
+WantedBy=default.target

@@ -9,4 +9,9 @@ sabnzbd: darkhttpd.pid
 	rm -f darkhttpd.pid
 
 darkhttpd.pid:
-	darkhttpd /packages/ & echo "$$!" > darkhttpd.pid
+	darkhttpd /home/packages/ & echo "$$!" > darkhttpd.pid
+
+install:
+	sudo cp -i sabnzbd.service /etc/systemd/system/
+	echo systemctl enable sabnzbd
+	echo systemctl start sabnzbd

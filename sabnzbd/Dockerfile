@@ -1,4 +1,4 @@
-FROM superbfg7/arch-rpi2-minimal
+FROM superbfg7/python2
 
 ARG UID
 ARG GID

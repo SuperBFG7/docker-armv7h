@@ -1,4 +1,4 @@
-FROM superbfg7/python2
+FROM superbfg7/python2-armv7h
 
 ARG UID
 ARG GID
@@ -7,6 +7,7 @@ RUN pacman -S --noconfirm git python2-mako python2-cheetah && \
 		git clone https://github.com/SickRage/SickRage.git /app/sickrage && \
 		rm -rf /app/sickrage/.git/ && \
 		pacman -R --noconfirm git && \
+		/bin/yes | pacman -Scc && \
 		chown -R $UID:$GID /app
 
 USER $UID

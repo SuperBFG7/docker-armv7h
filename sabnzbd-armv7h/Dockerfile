@@ -1,18 +1,20 @@
-FROM superbfg7/python2
+FROM superbfg7/python2-armv7h
 
 ARG UID
-ARG GID
 ARG SERVER
 
 RUN echo -e "[custom]\n\
 Server = http://$SERVER" >> /etc/pacman.conf && \
 	pacman -Sy --noconfirm && \
-	pacman -S --noconfirm python2-pyopenssl sabnzbd
+	pacman -S --noconfirm python2-pyopenssl sabnzbd && \
+	/bin/yes | pacman -Scc && \
+	ln -s /data/done/ /downloads && \
+	ln -s /data/tmp/ /incomplete-downloads
 
 USER $UID
 
 # set volumes
-VOLUME /config /downloads /incomplete-downloads
+VOLUME /config /data
 
 # expose ports
 EXPOSE 8080 9090

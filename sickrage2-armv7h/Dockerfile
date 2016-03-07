@@ -8,12 +8,14 @@ RUN pacman -S --noconfirm git python2-mako python2-cheetah && \
 		rm -rf /app/sickrage/.git/ && \
 		pacman -R --noconfirm git && \
 		/bin/yes | pacman -Scc && \
+		ln -s /data/downloads/ /downloads && \
+		ln -s /data/tv/ /tv && \
 		chown -R $UID:$GID /app
 
 USER $UID
 
 # Volumes and Ports
-VOLUME /config /downloads /tv
+VOLUME /config /data
 EXPOSE 8081
 
 CMD ["/app/sickrage/SickBeard.py","--datadir","/config"]

@@ -15,12 +15,12 @@ RUN pacman -R --noconfirm \
 		thin-provisioning-tools libaio libdbus libelf file gawk openssh \
 		pciutils procps-ng psmisc licenses tar util-linux hwids kmod ldns \
 		libedit libsystemd mpfr dnssec-anchors lz4 which sysfsutils \
-		gettext libunistring glib2 vi && \
+		gettext libunistring glib2 vi crda wpa_supplicant && \
 	pacman -Syu --noconfirm && \
 	pacman -S --noconfirm packer && \
 	packer -S --noconfirm localepurge && \
 	pacman -R --noconfirm packer && \
-	pacman -Scc	--noconfirm
+	/bin/yes | pacman -Scc
 
 ADD locale.nopurge /etc/locale.nopurge
 RUN localepurge && \

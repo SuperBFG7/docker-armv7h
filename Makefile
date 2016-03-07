@@ -1,6 +1,6 @@
 .PHONY: arch-rpi2 python2 sabnzbd samba sickrage2
 
-all: python2 sabnzbd samba sickrage2
+all: arch-rpi2 python2 sabnzbd samba sickrage2
 
 arch-rpi2:
 	$(MAKE) -C arch-rpi2

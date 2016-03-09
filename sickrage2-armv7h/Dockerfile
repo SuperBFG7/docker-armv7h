@@ -8,7 +8,9 @@ RUN pacman -S --noconfirm git python2-mako python2-cheetah && \
 		rm -rf /app/sickrage/.git/ && \
 		pacman -R --noconfirm git && \
 		/bin/yes | pacman -Scc && \
-		ln -s /data/downloads/ /downloads && \
+		groupadd -r -g $GID sickrage && \
+		useradd -r -u $UID -g sickrage -s /bin/false sickrage && \
+		ln -s /data/downloads/complete/ /downloads && \
 		ln -s /data/tv/ /tv && \
 		chown -R $UID:$GID /app
 

@@ -1,4 +1,4 @@
-FROM superbfg7/python2
+FROM superbfg7/python2-armv7h
 
 RUN pacman -Sy --noconfirm && \
 	pacman -S --noconfirm samba && \
@@ -16,4 +16,3 @@ VOLUME /music /log
 EXPOSE 139 445
 
 CMD ["/usr/bin/smbd","-F"]
-

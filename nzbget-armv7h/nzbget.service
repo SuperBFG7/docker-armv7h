@@ -1,0 +1,12 @@
+[Unit]
+Description=nzbget container
+Requires=docker.service mnt-nas.mount
+After=docker.service mnt-nas.mount
+
+[Service]
+Restart=always
+ExecStart=/usr/bin/docker start -a nzbget
+ExecStop=/usr/bin/docker stop nzbget
+
+[Install]
+WantedBy=default.target

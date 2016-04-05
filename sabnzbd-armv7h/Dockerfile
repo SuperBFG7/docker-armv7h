@@ -5,9 +5,7 @@ ARG SERVER
 
 RUN echo -e "[custom]\n\
 Server = http://$SERVER" >> /etc/pacman.conf && \
-	pacman -Sy --noconfirm && \
-	pacman -S --noconfirm python2-pyopenssl sabnzbd && \
-	/bin/yes | pacman -Scc && \
+	pacmaster.sh -Syu python2-pyopenssl sabnzbd && \
 	ln -s /data/done/ /downloads && \
 	ln -s /data/tmp/ /incomplete-downloads
 

@@ -3,6 +3,8 @@ FROM scratch
 #ADD http://archlinuxarm.org/os/ArchLinuxARM-rpi-2-latest.tar.gz /
 ADD ArchLinuxARM-rpi-2-latest.tar.gz /
 COPY mirrorlist /etc/pacman.d/mirrorlist
+COPY locale.nopurge /etc/locale.nopurge
+COPY pacmaster.sh /usr/local/bin/
 RUN pacman -R --noconfirm \
 		raspberrypi-firmware raspberrypi-firmware-bootloader \
 		raspberrypi-firmware-bootloader-x raspberrypi-firmware-examples \
@@ -16,14 +18,11 @@ RUN pacman -R --noconfirm \
 		pciutils procps-ng psmisc licenses tar util-linux hwids kmod ldns \
 		libedit libsystemd mpfr dnssec-anchors lz4 which sysfsutils \
 		gettext libunistring glib2 vi crda wpa_supplicant && \
-	pacman -Syu --noconfirm && \
-	pacman -S --noconfirm packer && \
+	pacman -Syu --noconfirm pwgen packer && \
 	packer -S --noconfirm localepurge && \
-	pacman -R --noconfirm packer && \
-	/bin/yes | pacman -Scc
+	pwgen -s -1 16 | (read i; echo "$i"; echo "$i") | passwd && \
+	userdel -f -r alarm && \
+	pacmaster.sh -R packer pwgen && \
+	pacmaster.sh -Syu
 
-ADD locale.nopurge /etc/locale.nopurge
-RUN localepurge && \
-	rm -rf /usr/share/doc/ /usr/share/gtk-doc/ /usr/share/info /usr/share/man 
-
-CMD ["/usr/bin/pacman","--noconfirm","-Syu"]
+CMD ["/usr/local/bin/pacmaster.sh","-Syu"]

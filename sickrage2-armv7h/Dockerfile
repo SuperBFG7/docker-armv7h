@@ -3,11 +3,10 @@ FROM superbfg7/python2-armv7h
 ARG UID
 ARG GID
 
-RUN pacman -S --noconfirm git python2-mako python2-cheetah && \
+RUN pacmaster.sh -Syu git python2-mako python2-cheetah && \
 		git clone https://github.com/SickRage/SickRage.git /app/sickrage && \
 		rm -rf /app/sickrage/.git/ && \
-		pacman -R --noconfirm git && \
-		/bin/yes | pacman -Scc && \
+		pacmaster.sh -R git && \
 		groupadd -r -g $GID sickrage && \
 		useradd -r -u $UID -g sickrage -s /bin/false sickrage && \
 		ln -s /data/downloads/complete/ /downloads && \

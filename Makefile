@@ -1,18 +1,22 @@
-.PHONY: arch-rpi2 python2 sabnzbd samba sickrage2
+.PHONY: archlinux-armv7h python2-armv7h nzbget-armv7h samba-armv7h sickrage2-armv7h
+BASE = archlinux-armv7h
+PYTHON2 = python2-armv7h
+RESTART_MODULES = $(PYTHON2_MODULES)
+PYTHON2_MODULES = nzbget-armv7h samba-armv7h sickrage2-armv7h
+MODULES = $(BASE) $(PYTHON2) $(PYTHON2_MODULES)
 
-all: arch-rpi2 python2 sabnzbd samba sickrage2
+all: $(MODULES)
 
-arch-rpi2:
-	$(MAKE) -C arch-rpi2
+restart:
+	for i in $(RESTART_MODULES); do \
+		$(MAKE) -C $$i create restart cleanup; \
+	done 
 
-python2:
-	$(MAKE) -C python2
+$(BASE):
+	$(MAKE) -C $@
 
-sabnzbd: arch-rpi2
-	$(MAKE) -C sabnzbd
+$(PYTHON2): $(BASE)
+	$(MAKE) -C $@
 
-samba: arch-rpi2
-	$(MAKE) -C samba
-
-sickrage2: arch-rpi2
-	$(MAKE) -C sickrage2
+$(PYTHON2_MODULES): $(PYTHON2)
+	$(MAKE) -C $@

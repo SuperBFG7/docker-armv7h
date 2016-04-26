@@ -1,8 +1,8 @@
-.PHONY: archlinux-armv7h python2-armv7h nzbget-armv7h samba-armv7h sickrage2-armv7h
+.PHONY: archlinux-armv7h python2-armv7h nzbget-armv7h samba-armv7h sickrage2-armv7h couchpotato-armv7h
 BASE = archlinux-armv7h
 PYTHON2 = python2-armv7h
 RESTART_MODULES = $(PYTHON2_MODULES)
-PYTHON2_MODULES = nzbget-armv7h samba-armv7h sickrage2-armv7h
+PYTHON2_MODULES = nzbget-armv7h samba-armv7h sickrage2-armv7h couchpotato-armv7h
 MODULES = $(BASE) $(PYTHON2) $(PYTHON2_MODULES)
 
 all: $(MODULES)
@@ -13,7 +13,7 @@ restart:
 	done 
 
 $(BASE):
-	$(MAKE) -C $@
+	$(MAKE) -C $@ clean all
 
 $(PYTHON2): $(BASE)
 	$(MAKE) -C $@

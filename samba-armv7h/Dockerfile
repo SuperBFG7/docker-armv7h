@@ -11,4 +11,4 @@ VOLUME /music /log
 # expose ports
 EXPOSE 139 445
 
-CMD ["/usr/bin/smbd","-F"]
+CMD exec ionice -c 3 smbd -FS < /dev/null

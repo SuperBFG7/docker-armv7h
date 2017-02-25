@@ -15,7 +15,12 @@ tag: build
 
 create:
 	sudo docker rename samba samba_old
-	sudo docker create --name=samba -v /etc/localtime:/etc/localtime:ro -v /data/music/:/music:ro -v /var/log/samba/:/log -p 139:139 -p 445:445 superbfg7/samba-armv7h
+	sudo docker create --name=samba -v /etc/localtime:/etc/localtime:ro \
+									-v /data/music/:/music:ro \
+									-v /data/upload/:/upload \
+									-v /var/log/samba/:/log \
+									-p 139:139 -p 445:445 \
+									superbfg7/samba-armv7h
 restart:
 	sudo docker stop samba_old
 	sudo docker start samba

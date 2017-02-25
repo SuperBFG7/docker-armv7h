@@ -6,7 +6,7 @@ RUN pacmaster.sh -Syu samba
 COPY smb.conf /etc/samba/smb.conf
 
 # set volumes
-VOLUME /music /log
+VOLUME /music /upload /log
 
 # expose ports
 EXPOSE 139 445

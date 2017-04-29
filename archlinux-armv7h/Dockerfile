@@ -15,7 +15,9 @@ RUN pacman -R --noconfirm \
 		thin-provisioning-tools libaio libelf file gawk openssh pciutils \
 		procps-ng psmisc licenses tar util-linux hwids kmod ldns libedit \
 		libsystemd mpfr dnssec-anchors which sysfsutils gettext vi crda \
-		wpa_supplicant grep gzip less sed texinfo wireless_tools && \
+		wpa_supplicant grep gzip less sed texinfo wireless_tools mkinitcpio \
+		libpcap dialog iw mkinitcpio-busybox wireless-regdb libnftnl libnl \
+		libmnl && \
 	pacman -Syu --noconfirm pwgen packer && \
 	packer -S --noconfirm localepurge && \
 	pwgen -s -1 16 | (read i; echo "$i"; echo "$i") | passwd && \

@@ -1,6 +1,7 @@
 FROM superbfg7/python2-armv7h
 
-RUN pacmaster.sh -Syu samba
+RUN pacmaster.sh -Syu samba util-linux &&\
+		mkdir -p /var/run/samba
 
 # add config file
 COPY smb.conf /etc/samba/smb.conf

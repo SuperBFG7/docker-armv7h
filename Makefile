@@ -27,5 +27,6 @@ $(PYTHON2_MODULES): $(PYTHON2)
 push:
 	sudo docker login -u $(DOCKER_USER)
 	for i in $(PUSH_MODULES); do \
+		echo "----- pushing $$i"; \
 		sudo docker push $(DOCKER_USER)/$$i; \
 	done

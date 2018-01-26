@@ -5,21 +5,30 @@ sickrage2-armv7h: build tag
 force: force-build tag
 
 build:
-	sudo docker build -t superbfg7/sickrage2-armv7h \
+	sudo docker build \
+		-t superbfg7/sickrage2-armv7h \
 		--build-arg "UID=`id -u kodi`" \
 		--build-arg "GID=`id -g kodi`" .
 
 force-build:
-	sudo docker build -t superbfg7/sickrage2-armv7h \
+	sudo docker build --no-cache \
+		-t superbfg7/sickrage2-armv7h \
 		--build-arg "UID=`id -u kodi`" \
-		--build-arg "GID=`id -g kodi`" --no-cache .
+		--build-arg "GID=`id -g kodi`" .
 
 tag: build
 	sudo docker tag superbfg7/sickrage2-armv7h superbfg7/sickrage2-armv7h:`date +%F`
 
 create:
 	sudo docker rename sickrage2 sickrage2_old
-	sudo docker create --name=sickrage2 -v /etc/localtime:/etc/localtime:ro -v /opt/sickrage/:/config -v /data/video/new/sickrage/:/data -p 8081:8081 superbfg7/sickrage2-armv7h
+	sudo docker create \
+		--name=sickrage2 \
+		-v /etc/localtime:/etc/localtime:ro \
+		-v /opt/sickrage/:/config \
+		-v /data/video/sickrage/:/data \
+		-p 8081:8081 \
+		--memory 250M \
+		superbfg7/sickrage2-armv7h
 
 restart:
 	sudo docker stop sickrage2_old

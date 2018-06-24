@@ -9,7 +9,7 @@ RUN pacmaster.sh -Syu git python2-lxml python2-pyopenssl && \
 		git clone https://github.com/CouchPotato/CouchPotatoServer.git /app/couchpotato && \
 		rm -rf /app/couchpotato/.git/ && \
 		pacmaster.sh -R git && \
-		groupadd -r -g $GID couchpotato && \
+		groupadd -r -o -g $GID couchpotato && \
 		useradd -r -u $UID -g couchpotato -s /bin/false couchpotato && \
 		ln -s /data/downloads/complete/ /downloads && \
 		ln -s /data/movies/ /movies && \

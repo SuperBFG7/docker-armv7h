@@ -7,7 +7,7 @@ RUN pacmaster.sh -Syu git python2-mako python2-cheetah && \
 		git clone https://github.com/SickRage/SickRage.git /app/sickrage && \
 		rm -rf /app/sickrage/.git/ && \
 		pacmaster.sh -R git && \
-		groupadd -r -g $GID sickrage && \
+		groupadd -r -o -g $GID sickrage && \
 		useradd -r -u $UID -g sickrage -s /bin/false sickrage && \
 		ln -s /data/downloads/complete/ /downloads && \
 		ln -s /data/tv/ /tv && \

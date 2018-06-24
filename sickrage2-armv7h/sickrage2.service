@@ -1,7 +1,7 @@
 [Unit]
 Description=sickrage2 container
-Requires=docker.service mnt-nas.mount
-After=docker.service mnt-nas.mount
+Requires=docker.service mnt-nas1.mount
+After=docker.service mnt-nas1.mount
 
 [Service]
 Restart=always

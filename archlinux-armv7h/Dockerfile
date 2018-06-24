@@ -5,7 +5,9 @@ ADD ArchLinuxARM-rpi-2-latest.tar.gz /
 COPY mirrorlist /etc/pacman.d/mirrorlist
 COPY locale.nopurge /etc/locale.nopurge
 COPY pacmaster.sh /usr/local/bin/
-RUN pacman -R --noconfirm \
+RUN pacman-key --init && \
+	pacman-key --populate archlinuxarm && \
+	pacman -R --noconfirm \
 		raspberrypi-firmware raspberrypi-bootloader raspberrypi-bootloader-x \
 		cryptsetup dhcpcd diffutils haveged inetutils iproute2 iptables \
 		iputils jfsutils linux-firmware linux-raspberrypi logrotate lvm2 \

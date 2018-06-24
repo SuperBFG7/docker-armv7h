@@ -12,4 +12,4 @@ VOLUME /fotos /music /upload /log
 # expose ports
 EXPOSE 139 445
 
-CMD exec ionice -c 3 smbd -FS < /dev/null
+CMD exec ionice -c 3 smbd -FS --no-process-group < /dev/null

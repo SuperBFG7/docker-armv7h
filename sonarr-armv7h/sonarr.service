@@ -1,0 +1,12 @@
+[Unit]
+Description=sonarr container
+Requires=docker.service mnt-nas1.mount
+After=docker.service mnt-nas1.mount
+
+[Service]
+Restart=always
+ExecStart=/usr/bin/docker start -a sonarr
+ExecStop=/usr/bin/docker stop sonarr
+
+[Install]
+WantedBy=default.target

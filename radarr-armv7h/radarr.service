@@ -1,0 +1,12 @@
+[Unit]
+Description=radarr container
+Requires=docker.service mnt-nas1.mount
+After=docker.service mnt-nas1.mount
+
+[Service]
+Restart=always
+ExecStart=/usr/bin/docker start -a radarr
+ExecStop=/usr/bin/docker stop radarr
+
+[Install]
+WantedBy=default.target

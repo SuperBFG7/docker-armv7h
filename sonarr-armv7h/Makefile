@@ -26,7 +26,6 @@ create:
 		-v /opt/sonarr/:/config \
 		-v /data/video/sonarr/:/data \
 		-p 8989:8989 \
-		--memory 250M \
 		superbfg7/sonarr-armv7h
 
 restart:

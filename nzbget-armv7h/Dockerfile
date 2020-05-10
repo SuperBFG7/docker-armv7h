@@ -8,7 +8,7 @@ RUN pacmaster.sh -Syu nzbget unrar unzip p7zip git && \
 		git clone https://github.com/clinton-hall/nzbToMedia.git /app/nzbToMedia/ && \
 		pacmaster.sh -R git && \
 		groupadd -r -o -g $GID nzbget && \
-		useradd -r -u $UID -g nzbget -s /bin/false nzbget && \
+		useradd -r -o -u $UID -g nzbget -s /bin/false nzbget && \
 		chown -R $UID:$GID /app
 
 USER $UID

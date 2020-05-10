@@ -8,7 +8,7 @@ RUN	pacmaster.sh -Syu gzip awk libmediainfo mono && \
 		tar xzfv NzbDrone.master.tar.gz && \
 		pacmaster.sh -R binutils fakeroot file libsystemd pcre tar util-linux wget apacman mpfr awk gzip && \
 		groupadd -r -o -g $GID sonarr && \
-		useradd -r -u $UID -g sonarr -s /bin/false sonarr && \
+		useradd -r -o -u $UID -g sonarr -s /bin/false sonarr && \
 		rm -f /NzbDrone.master.tar.gz
 
 USER $UID

@@ -25,9 +25,8 @@ create:
 		--name=nzbget \
 		-v /etc/localtime:/etc/localtime:ro \
 		-v /opt/nzbget:/config \
-		-v /data/video/sickrage/downloads/:/downloads \
+		-v /data/video/sickrage/downloads:/downloads \
 		-p 6789:6789 \
-		--memory 100M \
 		superbfg7/nzbget-armv7h
 
 restart:

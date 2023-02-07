@@ -1,11 +1,10 @@
-FROM superbfg7/python2-armv7h
+FROM superbfg7/archlinux-armv7h-minimal
 
 ARG UID
 ARG GID
 
 RUN pacmaster.sh -Syu nzbget unrar unzip p7zip git && \
 		mkdir /app/ && \
-		git clone https://github.com/clinton-hall/nzbToMedia.git /app/nzbToMedia/ && \
 		pacmaster.sh -R git && \
 		groupadd -r -o -g $GID nzbget && \
 		useradd -r -o -u $UID -g nzbget -s /bin/false nzbget && \

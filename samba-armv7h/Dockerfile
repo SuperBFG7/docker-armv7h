@@ -1,4 +1,4 @@
-FROM superbfg7/python2-armv7h
+FROM superbfg7/archlinux-armv7h-minimal
 
 RUN pacmaster.sh -Syu samba util-linux &&\
 		mkdir -p /var/run/samba

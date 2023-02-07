@@ -17,10 +17,10 @@ force-build:
 		--build-arg "GID=`id -g kodi`" .
 
 tag: build
-	sudo docker tag superbfg7/radarr-armv7h superbfg7/sonarr-armv7h:`date +%F`
+	sudo docker tag superbfg7/radarr-armv7h superbfg7/radarr-armv7h:`date +%F`
 
 create:
-	sudo docker rename radarr sonarr_old
+	sudo docker rename radarr radarr_old
 	sudo docker create --name=radarr \
 		-v /etc/localtime:/etc/localtime:ro \
 		-v /opt/radarr/:/config \

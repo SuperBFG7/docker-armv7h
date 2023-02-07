@@ -1,14 +1,19 @@
-.PHONY: archlinux-armv7h python2-armv7h nzbget-armv7h samba-armv7h sickrage2-armv7h couchpotato-armv7h
+.PHONY: archlinux-armv7h nzbget-armv7h samba-armv7h
 BASE = archlinux-armv7h
-PYTHON2 = python2-armv7h
-RESTART_MODULES = $(PYTHON2_MODULES)
-PYTHON2_MODULES = nzbget-armv7h samba-armv7h sickrage2-armv7h couchpotato-armv7h
-MODULES = $(BASE) $(PYTHON2) $(PYTHON2_MODULES)
-PUSH_MODULES = $(BASE)-minimal $(PYTHON2) $(PYTHON2_MODULES)
+MONO = mono-armv7h
+BUILD_MODULES = $(BASE) $(MONO) $(MODULES)
+RESTART_MODULES = $(MODULES)
+MODULES = $(BASE_MODULES) $(MONO_MODULES)
+MONO_MODULES = nzbget-armv7h samba-armv7h
+BASE_MODULES = radarr-armv7h sonarr-armv7h
+PUSH_MODULES = $(BASE)-minimal $(MONO) $(MODULES)
 
 DOCKER_USER = superbfg7
 
-all: $(MODULES)
+all: $(BUILD_MODULES)
+
+clean:
+	$(MAKE) -C archlinux-armv7h clean
 
 restart:
 	for i in $(RESTART_MODULES); do \
@@ -16,12 +21,15 @@ restart:
 	done 
 
 $(BASE):
-	$(MAKE) -C $@ clean all
-
-$(PYTHON2): $(BASE)
 	$(MAKE) -C $@
 
-$(PYTHON2_MODULES): $(PYTHON2)
+$(MONO): $(BASE)
+	$(MAKE) -C $@
+
+$(BASE_MODULES): $(BASE)
+	$(MAKE) -C $@
+
+$(MONO_MODULES): $(MONO)
 	$(MAKE) -C $@
 
 push:

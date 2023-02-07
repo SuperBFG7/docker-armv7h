@@ -8,17 +8,14 @@ COPY pacmaster.sh /usr/local/bin/
 COPY apacman* /
 RUN pacman-key --init && \
 	pacman-key --populate archlinuxarm
-RUN	pacman -R --noconfirm \
+RUN	pacman -Ru --noconfirm \
 		raspberrypi-firmware raspberrypi-bootloader raspberrypi-bootloader-x \
-		dhcpcd diffutils haveged inetutils iproute2 \
-		iputils jfsutils linux-firmware linux-raspberrypi logrotate lvm2 \
-		man-db man-pages mdadm nano net-tools netctl reiserfsprogs s-nail \
-		systemd-sysvcompat xfsprogs usbutils \
-		groff libpipeline openresolv \
-		thin-provisioning-tools libaio file gawk openssh pciutils \
+		dhcpcd diffutils haveged iproute2 iputils linux-firmware linux-raspberrypi \
+		nano net-tools netctl systemd-sysvcompat openresolv \
+		file gawk openssh pciutils \
 		procps-ng psmisc licenses tar ldns libedit \
-		mpfr dnssec-anchors which sysfsutils gettext vi crda \
-		wpa_supplicant grep gzip less sed texinfo wireless_tools mkinitcpio \
+		mpfr dnssec-anchors which gettext vi crda \
+		wpa_supplicant grep gzip less sed wireless_tools mkinitcpio \
 		dialog iw mkinitcpio-busybox wireless-regdb && \
 	pacman -Syu --noconfirm pwgen && \
 	pacman -U --noconfirm /apacman* && \
